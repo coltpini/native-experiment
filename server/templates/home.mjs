@@ -26,7 +26,7 @@ export default class Home extends BaseTemplate {
                 return `
                     <filter-list tags="${this.getFlyTags(block.flies)}">
                         ${
-                            block.flies.map( fly => `<fly-tile href="#" img="/static/assets/img/thumb/${fly.id}.jpg" ${fly.tags.length > 0 ? `data-tags="${fly.tags.join(',')}"` : ''}>${fly.name}</fly-tile>`).join('')
+                            block.flies.map( fly => `<fly-tile href="/fly/${fly.id}" img="/static/assets/img/thumb/${fly.id}.jpg" ${fly.tags.length > 0 ? `data-tags="${fly.tags.join(',')}"` : ''}>${fly.name}</fly-tile>`).join('')
                         }
                     </filter-list>
                 `;
