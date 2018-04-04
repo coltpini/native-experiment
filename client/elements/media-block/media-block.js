@@ -3,34 +3,34 @@ class MediaBlock extends HTMLElement {
     constructor() {
         super();
         const html = `
-                        <style>
-                            :host {
-                                display: block;
-                                width: 100%;
-                                margin: 4em 0 8em;
-                                --lh: var(--lh-200, 1.4em);
-                            }
-                            figure {
-                                max-width: 56em;
-                                margin: 0 auto;
-                            }
-                            img {
-                                width: 100%;
-                            }
-                            figcaption {
-                                font-size: 0.8em;
-                                line-height: var(--lh);
-                            }
-                        </style>
-                        <figure>
-                            <img class="posterframe" src="" />
-                            <figcaption>
-                                <b></b>
-                                <div></div>
-                            </figcaption>
-                        </figure>
-                      `;
-				buildShadowRoot(html,this);
+            <style>
+                :host {
+                    display: block;
+                    width: 100%;
+                    margin: 4em 0 8em;
+                    --lh: var(--lh-200, 1.4em);
+                }
+                figure {
+                    margin: 0;
+                }
+                img {
+                    width: 100%;
+                }
+                figcaption {
+                    font-size: 0.8em;
+                    line-height: var(--lh);
+                }
+            </style>
+            <figure>
+                <img class="posterframe" src=""/>
+                <figcaption>
+                    <b></b>
+                    <div></div>
+                </figcaption>
+            </figure>
+        `;
+        buildShadowRoot(html,this);
+
         this.titleElement = this.shadowRoot.querySelector('figcaption b');
         this.captionElement = this.shadowRoot.querySelector('figcaption div');
         this.imgElement = this.shadowRoot.querySelector('img');
@@ -47,6 +47,7 @@ class MediaBlock extends HTMLElement {
                 break;
             case 'title':
                 this.titleElement.innerHTML = newVal;
+                this.imgElement.setAttribute('alt', 'title');
                 break;
             case 'caption':
                 this.captionElement.innerHTML = newVal;

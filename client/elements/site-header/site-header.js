@@ -94,7 +94,7 @@ class SiteHeader extends HTMLElement {
                 }
 
                 ::slotted(nav-item) {
-                    margin-right: var(--space-75);
+                    margin-right: var(--space-100);
                     font-size: 0.9em;
                 }
         </style>
