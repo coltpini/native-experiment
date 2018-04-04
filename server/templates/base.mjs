@@ -9,7 +9,6 @@ export default class BaseTemplate {
             <main>
                 ${this.page}
             </main>
-            ${this.footer}
         `;
         return `
         <!DOCTYPE html>
@@ -22,7 +21,7 @@ export default class BaseTemplate {
                 <meta property="og:site_name" content="Placeholder Service">
                 <title>${this.head.title}</title>
                 ${this.head.content}
-                <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Playfair+Display:400,400i,900,900i" rel="stylesheet">
+                <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
                 <link rel="stylesheet" href="/static/index.css" />
                 <script src="/static/polyfills/webcomponents-loader.js"></script>
                 ${
@@ -57,24 +56,13 @@ export default class BaseTemplate {
     }
     populateHeader({navigation}){
         return `
-            <site-header logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Rubber_Duck_%288374802487%29.jpg/220px-Rubber_Duck_%288374802487%29.jpg">
+            <site-header logo="/static/assets/img/logo.svg" layout="split" title="Grandpa's Flies">
                 ${
                     navigation.map(({href, text}) => {
                         return `<nav-item href="${href}">${text}</nav-item>`;
                     }).join('')
                 }
             </site-header>
-        `;
-    }
-    populateFooter({navigation}){
-        return `
-            <site-footer>
-                ${
-                    navigation.map(({href, text}) => {
-                        return `<nav-item href="${href}">${text}</nav-item>`;
-                    }).join('')
-                }
-            </site-footer>
         `;
     }
     parseElements(str){

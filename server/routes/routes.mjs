@@ -11,7 +11,6 @@ export default (app) => {
             let home = new Home(json);
             res.send(home.render());
         }).catch( err => console.log(`didn't work`, err));
-
     });
 
     app.get('/article/:id', (req,res) => {

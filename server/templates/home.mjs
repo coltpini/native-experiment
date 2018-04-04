@@ -5,7 +5,7 @@ export default class Home extends BaseTemplate {
         super();
         this.createParts(data);
     }
-    createParts({navigation, content, footerNavigation, title, description, socialImage}){
+    createParts({navigation, content, title, description, socialImage}){
         this.head.title = title;
         this.head.content = `
             <meta property="og:title" content="${title}">
@@ -14,31 +14,22 @@ export default class Home extends BaseTemplate {
         `;
         this.header = this.populateHeader({navigation});
         this.page = this.populatePage(content);
-        this.footer = this.populateFooter({navigation});
+    }
+    getFlyTags(flies){
+        let tags = flies.reduce( (a, n) => [...a, ...n.tags], []);
+        tags = tags.filter( (tag, i, arr) => arr.indexOf(tag) === i);
+        return tags.join(',')
     }
     populatePage(content){
         return content.map( block => {
-            switch (block.type) {
-                case "title":
-                    return `<main-block heading="${block.title}" lede="${block.lede}" img="${block.img}" ></main-block>`;
-                case "content":
-                    return `<content-block>${block.content}</content-block>`;
-                case "tabs":
-
-                    return `<tabbed-content>
-                                ${block.content.reduce( (a,n,i) => {
-                                    if(i === 0){ this.stiva = {active: {active: n.tab} };}
-                                    return `${a}<tab-panel tabtitle="${n.tab}">${n.content}</tab-panel>`
-                                }, '')}
-                            </tabbed-content>
-                            `;
-                case "media":
-                    return `
-                        <media-block title="${block.title}" caption="${block.caption}" img="${block.img}"></media-block>
-                    `;
-                default:
-                    return ``;
-
+            if(block.type === `filter-list`){
+                return `
+                    <filter-list tags="${this.getFlyTags(block.flies)}">
+                        ${
+                            block.flies.map( fly => `<fly-tile href="#" img="/static/assets/img/thumb/${fly.id}.jpg" ${fly.tags.length > 0 ? `data-tags="${fly.tags.join(',')}"` : ''}>${fly.name}</fly-tile>`).join('')
+                        }
+                    </filter-list>
+                `;
             }
         }).join('');
     }

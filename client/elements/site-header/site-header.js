@@ -13,6 +13,7 @@ class SiteHeader extends HTMLElement {
                     --brand-color: var(--color-300, RGBA(58, 58, 58, 1.00));
                     --seperator-color: var(--color-200, RGBA(234, 234, 234, 1.00));
                     display: block;
+                    margin-bottom: var(--space-200);
                 }
 
                 * {

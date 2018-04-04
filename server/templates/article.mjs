@@ -14,7 +14,6 @@ export default class Article extends BaseTemplate {
         `;
         this.header = this.populateHeader({navigation});
         this.page = this.populatePage(content);
-        this.footer = this.populateFooter({navigation});
     }
     populatePage(content){
         return content.map( block => {

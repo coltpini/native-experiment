@@ -38,7 +38,7 @@ html, body {
     box-sizing: border-box;
 }
 main {
-    margin: 0 5em;
+    margin: 0 var(--space-400);
 }
 body {
     font-family: var(--sans);
