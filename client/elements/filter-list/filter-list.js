@@ -8,11 +8,13 @@ class FilterList extends HTMLElement {
             <style>
                 :host {
                     --active-color: var(--color-200, #eee);
+                    --left-column-size: var(--space-350);
+                    display: block;
                 }
                 .container {
                     display: grid;
                     grid-gap: var(--space-100);
-                    grid-template-columns: var(--space-400) 1fr;
+                    grid-template-columns: 1fr;
                 }
                 nav {
                     display: flex;
@@ -30,6 +32,16 @@ class FilterList extends HTMLElement {
                 }
                 tile-grid fly-tile.hide{
                     display: none;
+                }
+                @media screen and (min-width: 80em) {
+                    :host {
+                        --left-column-size: var(--space-400);
+                    }
+                }
+                @media screen and (min-width: 32em){
+                    .container {
+                        grid-template-columns: var(--left-column-size) 1fr;
+                    }
                 }
             </style>
             <div class="container">

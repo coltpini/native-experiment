@@ -45,6 +45,7 @@ class FlyTile extends HTMLElement {
                 color: var(--text-color);
                 margin: var(--space-100) 0 var(--space-200);
                 text-align: center;
+                font-size: 0.8em;
             }
         </style>
         <a>   

@@ -27,6 +27,7 @@
     --space-100: 1em;
     --space-200: 2em;
     --space-300: 4em;
+    --space-350: 10em;
     --space-400: 16em;
 }
 
@@ -38,7 +39,12 @@ html, body {
     box-sizing: border-box;
 }
 main {
-    margin: 0 var(--space-400);
+    margin: 0 var(--space-200) var(--space-100);
+}
+@media screen and (min-width: 80em){
+    main {
+        margin: 0 var(--space-400);
+    }
 }
 body {
     font-family: var(--sans);

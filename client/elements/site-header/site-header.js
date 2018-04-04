@@ -40,8 +40,7 @@ class SiteHeader extends HTMLElement {
                 }
                 
                 h1 a img {
-                    width: 100%;
-                    max-width: 130px;
+                    width: var(--space-300);
                     display: none;
                     margin-right: var(--space-50);
                 }
@@ -49,15 +48,20 @@ class SiteHeader extends HTMLElement {
                 h1 a img.active {
                     display: inline-block;
                 }
+
+                .title {
+                    display: none;
+                }
                 
-                .nav-container {
+                .container {
                     align-items: var(--align-items);
                     border-bottom: 1px solid var(--seperator-color);
                     display: flex;
                     justify-content: var(--justify-content);
                     margin: 0 auto;
-                    padding: var(--space-100) var(--space-200);
-                    width: 80%;
+                    padding: var(--space-100) var(--space-100);
+                    width: 100%;
+                    flex-direction: column;
                 }
                 
                 :host([pinned]) section{
@@ -95,11 +99,30 @@ class SiteHeader extends HTMLElement {
 
                 ::slotted(nav-item) {
                     margin-right: var(--space-100);
-                    font-size: 0.9em;
+                    font-size: 0.8em;
+                }
+
+                @media screen and (min-width: 80em){
+                    .container {
+                        padding: var(--space-100) var(--space-200);
+                        width: 80%;
+                    }
+                }
+                @media screen and (min-width: 32em){
+                    .container {
+                        flex-direction: row;
+                    }
+                    .title {
+                        display: inline;
+                    }
+                    ::slotted(nav-item) {
+                        margin-right: var(--space-100);
+                        font-size: 0.9em;
+                    }
                 }
         </style>
         <section>
-            <div class="nav-container">
+            <div class="container">
                 <h1>
                     <a href="/" class="title-link" >
                         <img />
@@ -115,7 +138,7 @@ class SiteHeader extends HTMLElement {
         buildShadowRoot(html, this);
         this.elems = {
             logo: this.shadowRoot.querySelector('img'),
-            container: this.shadowRoot.querySelector('.nav-container'),
+            container: this.shadowRoot.querySelector('.container'),
             title: this.shadowRoot.querySelector('.title'),
             titleLink: this.shadowRoot.querySelector('.title-link')
         }
